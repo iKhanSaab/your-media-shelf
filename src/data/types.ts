@@ -17,8 +17,20 @@ export interface ShelfItem {
     percent?: number;
   };
   genre?: string[];
+  tags?: string[];
   notes?: string;
   addedAt: string;
+  startedAt?: string;
+  finishedAt?: string;
+  queued?: boolean;
+}
+
+export interface ShelfList {
+  id: string;
+  name: string;
+  description?: string;
+  itemIds: string[];
+  createdAt: string;
 }
 
 export const CONTENT_TYPE_LABELS: Record<ContentType, string> = {

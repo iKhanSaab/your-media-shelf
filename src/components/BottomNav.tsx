@@ -1,11 +1,12 @@
 import { NavLink, useLocation } from "react-router-dom";
-import { Home, Library, Plus, BarChart3, Search } from "lucide-react";
+import { Home, Library, Plus, BarChart3, List } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const NAV_ITEMS = [
   { path: "/", icon: Home, label: "Home" },
   { path: "/shelf", icon: Library, label: "Shelf" },
   { path: "/add", icon: Plus, label: "Add" },
+  { path: "/lists", icon: List, label: "Lists" },
   { path: "/stats", icon: BarChart3, label: "Stats" },
 ];
 
