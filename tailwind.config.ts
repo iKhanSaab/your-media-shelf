@@ -13,6 +13,10 @@ export default {
       },
     },
     extend: {
+      fontFamily: {
+        display: ['Playfair Display', 'Georgia', 'serif'],
+        body: ['Source Sans 3', 'system-ui', 'sans-serif'],
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -46,6 +50,15 @@ export default {
         card: {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
+        },
+        shelf: {
+          warm: "hsl(var(--shelf-warm))",
+          "amber-light": "hsl(var(--shelf-amber-light))",
+          surface: "hsl(var(--shelf-surface))",
+        },
+        star: {
+          filled: "hsl(var(--star-filled))",
+          empty: "hsl(var(--star-empty))",
         },
         sidebar: {
           DEFAULT: "hsl(var(--sidebar-background))",
