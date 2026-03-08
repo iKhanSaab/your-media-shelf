@@ -1,4 +1,4 @@
-import { ContentType, ShelfItem, ContentStatus } from "./types";
+import { ContentType, ShelfItem, ShelfList, ContentStatus } from "./types";
 
 export const MOCK_ITEMS: ShelfItem[] = [
   {
@@ -10,8 +10,11 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 5,
     progress: { season: 3, episode: 7 },
     genre: ["Drama", "Crime", "Thriller"],
+    tags: ["intense", "binge-worthy"],
     notes: "Just got to the Fly episode. Incredible tension.",
     addedAt: "2024-01-15",
+    startedAt: "2024-01-16",
+    queued: true,
   },
   {
     id: "2",
@@ -21,8 +24,11 @@ export const MOCK_ITEMS: ShelfItem[] = [
     status: "completed",
     rating: 4,
     genre: ["Sci-Fi", "Adventure"],
+    tags: ["epic", "cinematic"],
     notes: "Visually stunning. Hans Zimmer outdid himself.",
     addedAt: "2024-03-10",
+    startedAt: "2024-03-10",
+    finishedAt: "2024-03-10",
   },
   {
     id: "3",
@@ -33,8 +39,11 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 5,
     progress: { chapter: 18, page: 312 },
     genre: ["Sci-Fi", "Fiction"],
+    tags: ["cozy", "feel-good", "sci-fi"],
     notes: "Rocky is the best character in any book ever.",
     addedAt: "2024-02-01",
+    startedAt: "2024-02-05",
+    queued: true,
   },
   {
     id: "4",
@@ -45,7 +54,10 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 5,
     progress: { season: 4, episode: 28 },
     genre: ["Action", "Dark Fantasy"],
+    tags: ["dark", "intense", "masterpiece"],
     addedAt: "2023-12-20",
+    startedAt: "2023-06-01",
+    finishedAt: "2023-12-20",
   },
   {
     id: "5",
@@ -56,8 +68,11 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 5,
     progress: { percent: 72 },
     genre: ["Action RPG", "Open World"],
+    tags: ["challenging", "open-world"],
     notes: "Malenia can wait. Exploring the DLC first.",
     addedAt: "2024-01-01",
+    startedAt: "2024-01-02",
+    queued: true,
   },
   {
     id: "6",
@@ -68,7 +83,9 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 4,
     progress: { episode: 142 },
     genre: ["Science", "Health"],
+    tags: ["educational"],
     addedAt: "2024-02-15",
+    startedAt: "2024-02-15",
   },
   {
     id: "7",
@@ -78,7 +95,10 @@ export const MOCK_ITEMS: ShelfItem[] = [
     status: "completed",
     rating: 5,
     genre: ["Drama", "Horror"],
+    tags: ["emotional", "dark"],
     addedAt: "2023-11-01",
+    startedAt: "2023-10-15",
+    finishedAt: "2023-11-01",
   },
   {
     id: "8",
@@ -87,6 +107,7 @@ export const MOCK_ITEMS: ShelfItem[] = [
     coverUrl: "https://covers.openlibrary.org/b/id/10432940-L.jpg",
     status: "plan",
     genre: ["Literary Fiction", "Sci-Fi"],
+    tags: ["cozy", "literary"],
     addedAt: "2024-03-01",
   },
   {
@@ -98,8 +119,10 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 4,
     progress: { percent: 35 },
     genre: ["RPG", "Fantasy"],
+    tags: ["long", "story-rich"],
     notes: "Taking a break after Act 2.",
     addedAt: "2023-10-15",
+    startedAt: "2023-10-16",
   },
   {
     id: "10",
@@ -110,7 +133,10 @@ export const MOCK_ITEMS: ShelfItem[] = [
     rating: 4,
     progress: { season: 2, episode: 15 },
     genre: ["Action", "Supernatural"],
+    tags: ["hype", "action-packed"],
     addedAt: "2024-01-20",
+    startedAt: "2024-01-22",
+    queued: true,
   },
   {
     id: "11",
@@ -120,7 +146,10 @@ export const MOCK_ITEMS: ShelfItem[] = [
     status: "completed",
     rating: 5,
     genre: ["Drama", "Biography"],
+    tags: ["cinematic", "masterpiece"],
     addedAt: "2023-12-01",
+    startedAt: "2023-12-01",
+    finishedAt: "2023-12-01",
   },
   {
     id: "12",
@@ -130,7 +159,34 @@ export const MOCK_ITEMS: ShelfItem[] = [
     status: "completed",
     rating: 3,
     genre: ["Fiction", "Fantasy"],
+    tags: ["cozy", "short"],
     addedAt: "2024-01-05",
+    startedAt: "2024-01-06",
+    finishedAt: "2024-01-12",
+  },
+];
+
+export const MOCK_LISTS: ShelfList[] = [
+  {
+    id: "list-1",
+    name: "2024 Watchlist",
+    description: "Everything I want to get through this year",
+    itemIds: ["1", "10", "8"],
+    createdAt: "2024-01-01",
+  },
+  {
+    id: "list-2",
+    name: "Top Sci-Fi",
+    description: "The best science fiction across all media",
+    itemIds: ["3", "2", "11", "8"],
+    createdAt: "2024-02-10",
+  },
+  {
+    id: "list-3",
+    name: "Comfort Zone",
+    description: "Cozy, feel-good picks for rainy days",
+    itemIds: ["3", "12", "8"],
+    createdAt: "2024-03-01",
   },
 ];
 
@@ -140,5 +196,14 @@ export const getInProgressItems = () =>
 export const getCompletedItems = () =>
   MOCK_ITEMS.filter((i) => i.status === "completed");
 
+export const getQueuedItems = () =>
+  MOCK_ITEMS.filter((i) => i.queued === true);
+
 export const getItemById = (id: string) =>
   MOCK_ITEMS.find((i) => i.id === id);
+
+export const getAllTags = (): string[] => {
+  const tags = new Set<string>();
+  MOCK_ITEMS.forEach((i) => i.tags?.forEach((t) => tags.add(t)));
+  return Array.from(tags).sort();
+};
