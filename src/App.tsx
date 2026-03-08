@@ -9,6 +9,7 @@ import MyShelfPage from "./pages/MyShelfPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import AddItemPage from "./pages/AddItemPage";
 import ListsPage from "./pages/ListsPage";
+import ListDetailPage from "./pages/ListDetailPage";
 import StatsPage from "./pages/StatsPage";
 import NotFound from "./pages/NotFound";
 

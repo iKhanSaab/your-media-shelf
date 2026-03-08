@@ -31,6 +31,7 @@ const ListsPage = () => {
           return (
             <div
               key={list.id}
+              onClick={() => navigate(`/lists/${list.id}`)}
               className="rounded-xl bg-card p-4 cursor-pointer hover:bg-shelf-warm transition-colors"
             >
               <div className="flex items-start gap-4">
