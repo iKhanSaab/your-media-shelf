@@ -9,6 +9,7 @@ import MyShelfPage from "./pages/MyShelfPage";
 import ItemDetailPage from "./pages/ItemDetailPage";
 import AddItemPage from "./pages/AddItemPage";
 import ListsPage from "./pages/ListsPage";
+import ListDetailPage from "./pages/ListDetailPage";
 import StatsPage from "./pages/StatsPage";
 import NotFound from "./pages/NotFound";
 
@@ -26,6 +27,7 @@ const App = () => (
           <Route path="/item/:id" element={<ItemDetailPage />} />
           <Route path="/add" element={<AddItemPage />} />
           <Route path="/lists" element={<ListsPage />} />
+          <Route path="/lists/:id" element={<ListDetailPage />} />
           <Route path="/stats" element={<StatsPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
